@@ -12,6 +12,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import robot.subsystems.drivetrain.Drivetrain;
+import robot.subsystems.drivetrain.commands.JoystickDrive;
+import robot.subsystems.drivetrain.commands.POVdrive;
+import robot.subsystems.drivetrain.commands.sqrtJoystickDrive;
 
 
 /**
@@ -28,6 +31,8 @@ public class Robot extends TimedRobot {
     public static RobotContainer m_robotContainer;
 
     Command m_autonomousCommand;
+    public static SendableChooser<Command> m_chooser = new SendableChooser<>();
+
 
     /**
      * This function is run when the robot is first started up and should be
@@ -35,6 +40,9 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
+        m_chooser.addOption("POV drive" , new POVdrive());
+        m_chooser.addDefault("Normal", new JoystickDrive());
+        m_chooser.addOption("sqr drive", new sqrtJoystickDrive());
         m_robotContainer = new RobotContainer();
     }
 
