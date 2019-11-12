@@ -57,4 +57,12 @@ public class RobotContainer {
     public Command getAutonomous() {
         return m_chooser.getSelected();
     }
+
+    public double getRightXboxY(){
+        return xbox.getRawAxis(rightYStick);
+    }
+
+    public double getLeftXboxY(){
+        return xbox.getRawAxis(leftYStick);
+    }
 }
