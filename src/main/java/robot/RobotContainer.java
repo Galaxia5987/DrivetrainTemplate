@@ -7,13 +7,13 @@
 
 package robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import robot.subsystems.drivetrain.Drivetrain;
 import robot.subsystems.drivetrain.commands.DriveStraight;
 
 /**
@@ -22,11 +22,14 @@ import robot.subsystems.drivetrain.commands.DriveStraight;
  */
 public class RobotContainer {
     SendableChooser<Command> m_chooser = new SendableChooser<>();
-
+    public Joystick rightJoystick = new Joystick(0);
+    public Joystick leftJoystick = new Joystick(1);
     public XboxController xbox = new XboxController(2);
     Button b = new JoystickButton(xbox, 1);
     Button x = new JoystickButton(xbox, 3);
     Button y = new JoystickButton(xbox, 4);
+    public static int leftYStick = 1;
+    public static int rightYStick = 5;
 
     public RobotContainer(){
         configureButtonBindings();
