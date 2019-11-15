@@ -7,6 +7,8 @@
 
 package robot;
 
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -27,7 +29,7 @@ import robot.subsystems.drivetrain.commands.sqrtJoystickDrive;
 public class Robot extends TimedRobot {
     // The robot's subsystems
     public static final Drivetrain m_drivetrain = new Drivetrain();
-    //public static final Elevator m_elevator = new Elevator();
+    public static AHRS navx = new AHRS(SPI.Port.kMXP);
     public static RobotContainer m_robotContainer;
 
     Command m_autonomousCommand;

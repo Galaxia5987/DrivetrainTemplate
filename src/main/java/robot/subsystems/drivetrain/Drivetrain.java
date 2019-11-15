@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import robot.Constants;
 import robot.Ports;
+import robot.Robot;
 import robot.subsystems.drivetrain.commands.DriveTypeChooser;
 
 /**
@@ -77,6 +78,16 @@ public class Drivetrain extends Subsystem {
         }
     }
 
+    public void autoShift(){
+        if (canShift()){
+            if (shiftUp()){
+                shifter.set(DoubleSolenoid.Value.kForward);
+            }else if (shiftDown()){
+                shifter.set(DoubleSolenoid.Value.kReverse);
+            }
+        }
+    }
+
 
     public int convertDistanceToTicks(double distance) {
         return (int) (distance * TICKS_PER_METER);
@@ -136,6 +147,14 @@ public class Drivetrain extends Subsystem {
 
     public boolean canShift(){
         return (Math.abs(getLeftVelocity()-getRightVelocity())< DIFFERENTIAL_TOLERANCE) && (shiftCounter.get()> MIN_SHIFT_TIME);
+    }
+
+    public boolean shiftUp(){
+        return (Robot.navx.getRawAccelX()> SHIFT_UP_ACCELERATION) && ((getRightVelocity()+getLeftVelocity())/2 > SHIFT_UP_POINT);
+    }
+
+    public boolean shiftDown(){
+        return (Robot.navx.getRawAccelX() < SHIFT_DOWN_ACCELERATION) && ((getRightVelocity()+getLeftVelocity())/2 < SHIFT_DOWN_POINT);
     }
 
     @Override

@@ -18,6 +18,10 @@ public class Constants {
         public static final int MAX_CURRENT = 35;
         public static final int DIFFERENTIAL_TOLERANCE = 0; //in m/s(not the correct number)
         public static final int MIN_SHIFT_TIME = 1; //the minimal time between shifts
+        public static final int SHIFT_UP_POINT = 2;// the velocity that the robot can shift to a higher gear in m/s(not the correct number)
+        public static final int SHIFT_UP_ACCELERATION = 2; // the minimal acceleration to shift to a higher gear in m/s^2 (not the correct number)
+        public static final int SHIFT_DOWN_POINT = 1;// the velocity that the robot should shift to a lower gear in m/s(not the correct number)
+        public static final int SHIFT_DOWN_ACCELERATION = 2; // the acceleration to shift to a lower gear in m/s^2 (not the correct number)
     }
 
 
