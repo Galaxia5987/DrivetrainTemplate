@@ -64,6 +64,15 @@ public class Drivetrain extends Subsystem {
         return convertTicksToDistance(leftMaster.getSelectedSensorVelocity()) * 10;
     }
 
+    public void shift(boolean shiftUp){
+        if(shiftUp) {
+            shifter.set(DoubleSolenoid.Value.kForward);
+        }else {
+            shifter.set(DoubleSolenoid.Value.kReverse);
+        }
+    }
+
+
     public int convertDistanceToTicks(double distance) {
         return (int) (distance * TICKS_PER_METER);
     }
