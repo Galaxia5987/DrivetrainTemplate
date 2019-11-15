@@ -150,11 +150,11 @@ public class Drivetrain extends Subsystem {
     }
 
     public boolean shiftUp(){
-        return (Robot.navx.getRawAccelX()> SHIFT_UP_ACCELERATION) && ((getRightVelocity()+getLeftVelocity())/2 > SHIFT_UP_POINT);
+        return (Robot.navx.getRawAccelX()> SHIFT_UP_ACCELERATION) && ((getRightVelocity()+getLeftVelocity())/2 > SHIFT_UP_POINT && !isOnHighGear());
     }
 
     public boolean shiftDown(){
-        return (Robot.navx.getRawAccelX() < SHIFT_DOWN_ACCELERATION) && ((getRightVelocity()+getLeftVelocity())/2 < SHIFT_DOWN_POINT);
+        return (Robot.navx.getRawAccelX() < SHIFT_DOWN_ACCELERATION) && ((getRightVelocity()+getLeftVelocity())/2 < SHIFT_DOWN_POINT && isOnHighGear());
     }
 
     @Override
