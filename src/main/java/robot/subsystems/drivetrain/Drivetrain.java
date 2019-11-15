@@ -5,7 +5,9 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import robot.Constants;
 import robot.Ports;
 import robot.subsystems.drivetrain.commands.DriveTypeChooser;
 
@@ -21,7 +23,7 @@ public class Drivetrain extends Subsystem {
     public VictorSPX right2 = new VictorSPX(Ports.Drivetrain.rightSlave2);
     public VictorSPX left2 = new VictorSPX(Ports.Drivetrain.leftSlave2);
     public DoubleSolenoid shifter = new DoubleSolenoid(Ports.Drivetrain.shifterUp,Ports.Drivetrain.shifterDown);
-
+    public Timer shiftCounter = new Timer();
 
     public Drivetrain() {
         leftMaster.setInverted(true);
@@ -65,10 +67,13 @@ public class Drivetrain extends Subsystem {
     }
 
     public void shift(boolean shiftUp){
-        if(shiftUp) {
-            shifter.set(DoubleSolenoid.Value.kForward);
-        }else {
-            shifter.set(DoubleSolenoid.Value.kReverse);
+        if (canShift()){
+            if(shiftUp){
+                shifter.set(DoubleSolenoid.Value.kForward);
+            }else {
+                shifter.set(DoubleSolenoid.Value.kReverse);
+            }
+            shiftCounter.reset();
         }
     }
 
@@ -127,6 +132,10 @@ public class Drivetrain extends Subsystem {
 
     public boolean isOnHighGear(){
         return shifter.get() == DoubleSolenoid.Value.kForward;
+    }
+
+    public boolean canShift(){
+        return (Math.abs(getLeftVelocity()-getRightVelocity())< DIFFERENTIAL_TOLERANCE) && (shiftCounter.get()> MIN_SHIFT_TIME);
     }
 
     @Override

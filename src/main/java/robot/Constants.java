@@ -16,6 +16,8 @@ public class Constants {
         public static final double TIME_STEP = 0.02;
         public static final double MAX_ACCELERATION = 0.4;// in m/s^2 (currently not the correct number)
         public static final int MAX_CURRENT = 35;
+        public static final int DIFFERENTIAL_TOLERANCE = 0; //in m/s(not the correct number)
+        public static final int MIN_SHIFT_TIME = 1; //the minimal time between shifts
     }
 
 
