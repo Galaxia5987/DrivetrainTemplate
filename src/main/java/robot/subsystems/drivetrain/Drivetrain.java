@@ -125,6 +125,10 @@ public class Drivetrain extends Subsystem {
         return tick / TICKS_PER_METER;
     }
 
+    public boolean isOnHighGear(){
+        return shifter.get() == DoubleSolenoid.Value.kForward;
+    }
+
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(new DriveTypeChooser());
