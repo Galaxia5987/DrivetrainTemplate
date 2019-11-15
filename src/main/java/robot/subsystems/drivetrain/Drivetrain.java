@@ -4,7 +4,9 @@ import static robot.Constants.Drivetrain.*;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import robot.Ports;
 import robot.subsystems.drivetrain.commands.DriveTypeChooser;
 
 /**
@@ -12,12 +14,14 @@ import robot.subsystems.drivetrain.commands.DriveTypeChooser;
  */
 public class Drivetrain extends Subsystem {
 
-    public TalonSRX leftMaster = new TalonSRX(16);
-    public TalonSRX rightMaster = new TalonSRX(11);
-    public VictorSPX right1 = new VictorSPX(12);
-    public VictorSPX left1 = new VictorSPX(14);
-    public VictorSPX right2 = new VictorSPX(13);
-    public VictorSPX left2 = new VictorSPX(15);
+    public TalonSRX leftMaster = new TalonSRX(Ports.Drivetrain.leftMaster);
+    public TalonSRX rightMaster = new TalonSRX(Ports.Drivetrain.rightMaster);
+    public VictorSPX right1 = new VictorSPX(Ports.Drivetrain.rightSlave1);
+    public VictorSPX left1 = new VictorSPX(Ports.Drivetrain.leftSlave1);
+    public VictorSPX right2 = new VictorSPX(Ports.Drivetrain.rightSlave2);
+    public VictorSPX left2 = new VictorSPX(Ports.Drivetrain.leftSlave2);
+    public DoubleSolenoid shifter = new DoubleSolenoid(Ports.Drivetrain.shifterUp,Ports.Drivetrain.shifterDown);
+
 
     public Drivetrain() {
         leftMaster.setInverted(true);
