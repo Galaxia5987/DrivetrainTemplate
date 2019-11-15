@@ -25,6 +25,7 @@ public class Drivetrain extends Subsystem {
     public VictorSPX left2 = new VictorSPX(Ports.Drivetrain.leftSlave2);
     public DoubleSolenoid shifter = new DoubleSolenoid(Ports.Drivetrain.shifterUp,Ports.Drivetrain.shifterDown);
     public Timer shiftCounter = new Timer();
+    public boolean isShiftingEnabled;
 
     public Drivetrain() {
         leftMaster.setInverted(true);
@@ -65,6 +66,10 @@ public class Drivetrain extends Subsystem {
 
     public double getLeftVelocity() {
         return convertTicksToDistance(leftMaster.getSelectedSensorVelocity()) * 10;
+    }
+
+    public void gearShiftEnabled(boolean enable){
+        isShiftingEnabled = enable;
     }
 
     public void shift(boolean shiftUp){
@@ -156,7 +161,7 @@ public class Drivetrain extends Subsystem {
      * @return if the drivetrain can shift gear
      */
     public boolean canShift(){
-        return (Math.abs(getLeftVelocity()-getRightVelocity())< DIFFERENTIAL_TOLERANCE) && (shiftCounter.get()> MIN_SHIFT_TIME);
+        return (Math.abs(getLeftVelocity()-getRightVelocity())< DIFFERENTIAL_TOLERANCE) && (shiftCounter.get()> MIN_SHIFT_TIME) && isShiftingEnabled;
     }
 
     /**
