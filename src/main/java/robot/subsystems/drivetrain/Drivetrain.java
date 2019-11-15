@@ -78,6 +78,11 @@ public class Drivetrain extends Subsystem {
         }
     }
 
+    /**
+     * This method is meant for automatic shifting
+     * first of all it checks if the drivetrain can shift gear
+     * than it check if it should shift the gear up or down
+     */
     public void autoShift(){
         if (canShift()){
             if (shiftUp()){
@@ -145,14 +150,29 @@ public class Drivetrain extends Subsystem {
         return shifter.get() == DoubleSolenoid.Value.kForward;
     }
 
+    /**
+     * This method return if the robot hasn't shifted recently or turn
+     * to check if the robot can shift gear
+     * @return if the drivetrain can shift gear
+     */
     public boolean canShift(){
         return (Math.abs(getLeftVelocity()-getRightVelocity())< DIFFERENTIAL_TOLERANCE) && (shiftCounter.get()> MIN_SHIFT_TIME);
     }
 
+    /**
+     * This method check if the acceleration is higher than the minimal acceleration for gear shifting
+     * and if the velocity is higher than the minimal velocity for shifting
+     * @return if the robot should shift the gear up
+     */
     public boolean shiftUp(){
         return (Robot.navx.getRawAccelX()> SHIFT_UP_ACCELERATION) && ((getRightVelocity()+getLeftVelocity())/2 > SHIFT_UP_POINT && !isOnHighGear());
     }
 
+    /**
+     * This method check if the acceleration is lower than the minimal acceleration for gear shifting
+     * and if the velocity is lower than the minimal velocity for shifting
+     * @return if the robot should shift the gear down
+     */
     public boolean shiftDown(){
         return (Robot.navx.getRawAccelX() < SHIFT_DOWN_ACCELERATION) && ((getRightVelocity()+getLeftVelocity())/2 < SHIFT_DOWN_POINT && isOnHighGear());
     }
