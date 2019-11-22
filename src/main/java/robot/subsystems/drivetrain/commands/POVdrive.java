@@ -25,16 +25,25 @@ public class POVdrive extends Command {
         double rightInput;
         double drive = Robot.m_robotContainer.getRightXboxY();
         double turn = Robot.m_robotContainer.getLeftXboxY();
+        double difference;
 
 
         leftInput = drive-turn;
         rightInput = drive + turn;
+        difference = Math.abs(leftInput - rightInput);
 
-        if (max >1){
-
-            leftInput /= max;
-            rightInput /= max;
-
+        if (leftInput > 1 && rightInput > -1) {
+            leftInput = 1;
+            rightInput -= difference;
+        } else if (leftInput > -1 && rightInput > 1) {
+            leftInput = 1;
+            rightInput -= difference;
+        } else if (leftInput < 1 && rightInput < -1) {
+            rightInput = -1;
+            leftInput += difference;
+        } else if (leftInput < -1 && rightInput < 1) {
+            leftInput = -1;
+            rightInput += difference;
         }
 
         Robot.m_drivetrain.setLeftSpeed(normalizeInput(leftInput));
