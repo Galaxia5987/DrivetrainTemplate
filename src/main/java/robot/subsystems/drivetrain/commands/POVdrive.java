@@ -26,7 +26,6 @@ public class POVdrive extends Command {
         double drive = Robot.m_robotContainer.getRightXboxY();
         double turn = Robot.m_robotContainer.getLeftXboxY();
 
-        double max = Math.max(Math.abs(drive), Math.abs(turn));
 
         leftInput = drive-turn;
         rightInput = drive + turn;
@@ -37,8 +36,9 @@ public class POVdrive extends Command {
             rightInput /= max;
 
         }
-        Robot.m_drivetrain.setLeftSpeed(leftInput);
-        Robot.m_drivetrain.setRightSpeed(rightInput);
+
+        Robot.m_drivetrain.setLeftSpeed(normalizeInput(leftInput));
+        Robot.m_drivetrain.setRightSpeed(normalizeInput(rightInput));
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -53,5 +53,21 @@ public class POVdrive extends Command {
     // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
     protected void interrupted() {
+    }
+
+    /**
+     * this function make sure that the input is between 1 to -1
+     *
+     * @param input the input in percent output
+     * @return the normalized value if necessary and if not the input
+     */
+    public double normalizeInput(double input) {
+        if (input > 1) {
+            return 1;
+        } else if (input < -1) {
+            return -1;
+        } else {
+            return input;
+        }
     }
 }
