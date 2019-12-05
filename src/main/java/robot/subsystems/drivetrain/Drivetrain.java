@@ -103,7 +103,7 @@ public class Drivetrain extends Subsystem {
 
 
     public int convertDistanceToTicks(double distance) {
-        return (int) (distance * TICKS_PER_METER);
+        return (int) (distance * Shifter.TICKS_PER_METER.get());
     }
 
     /**
@@ -114,7 +114,7 @@ public class Drivetrain extends Subsystem {
      * @return joystick value in m/s
      */
     public double convertJoystickInputToVelocity(double joystickInput) {
-        return joystickInput * MAX_VEL;
+        return joystickInput * Shifter.MAX_VEL.get();
     }
 
 
@@ -127,8 +127,8 @@ public class Drivetrain extends Subsystem {
     public double limitRightAcceleration(double desiredVelocity) {
 
         //Take the attempted acceleration and see if it is too high.
-        if (Math.abs(desiredVelocity - getRightVelocity()) / TIME_STEP >= MAX_ACCELERATION) {
-            return getRightVelocity() + MAX_ACCELERATION;
+        if (Math.abs(desiredVelocity - getRightVelocity()) / Constants.TIME_STEP >= Shifter.MAX_ACCELERATION.get()) {
+            return getRightVelocity() + Shifter.MAX_ACCELERATION.get();
         }
 
         return desiredVelocity;
@@ -143,15 +143,15 @@ public class Drivetrain extends Subsystem {
     public double limitLeftAcceleration(double desiredVelocity) {
 
         //Take the attempted acceleration and see if it is too high.
-        if (Math.abs((desiredVelocity - getLeftVelocity()) / TIME_STEP) >= MAX_ACCELERATION) {
-            return getLeftVelocity() + MAX_ACCELERATION;
+        if (Math.abs((desiredVelocity - getLeftVelocity()) / Constants.TIME_STEP) >= Shifter.MAX_ACCELERATION.get()) {
+            return getLeftVelocity() + Shifter.MAX_ACCELERATION.get();
         }
 
         return desiredVelocity;
     }
 
     public double convertTicksToDistance(int tick) {
-        return tick / TICKS_PER_METER;
+        return tick / Shifter.TICKS_PER_METER.get();
     }
 
     public boolean isOnHighGear() {
