@@ -16,6 +16,13 @@ public class Ports {
         public static final int rightSlave2 = 13;
         public static final int shifterUp = 0;
         public static final int shifterDown = 0;
+
+        public static final boolean leftMasterReversed = true;
+        public static final boolean leftSlave1Reversed = true;
+        public static final boolean leftSlave2Reversed = true;
+        public static final boolean rightMasterReversed = false;
+        public static final boolean rightSlave1Reversed = false;
+        public static final boolean rightSlave2Reversed = false;
     }
 
 }
