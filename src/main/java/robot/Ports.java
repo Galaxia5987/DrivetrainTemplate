@@ -8,14 +8,14 @@ package robot;
 public class Ports {
 
     public static class Drivetrain {
-    public static final int leftMaster = 16;
-    public static final int rightMaster = 11;
-    public static final int leftSlave1 = 15;
-    public static final int rightSlave1= 12;
-    public static final int leftSlave2 = 14;
-    public static final int rightSlave2= 13;
-    public static final int shifterUp = 0;
-    public static final int shifterDown = 0;
+        public static final int leftMaster = 16;
+        public static final int rightMaster = 11;
+        public static final int leftSlave1 = 15;
+        public static final int rightSlave1 = 12;
+        public static final int leftSlave2 = 14;
+        public static final int rightSlave2 = 13;
+        public static final int shifterUp = 0;
+        public static final int shifterDown = 0;
     }
 
 }

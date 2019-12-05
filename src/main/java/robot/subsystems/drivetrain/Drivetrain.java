@@ -18,7 +18,7 @@ import robot.subsystems.drivetrain.commands.DriveTypeChooser;
 public class Drivetrain extends Subsystem {
 
 
-    private DoubleSolenoid shifter = new DoubleSolenoid(Ports.Drivetrain.shifterUp,Ports.Drivetrain.shifterDown);
+    private DoubleSolenoid shifter = new DoubleSolenoid(Ports.Drivetrain.shifterUp, Ports.Drivetrain.shifterDown);
     private Timer shiftCounter = new Timer();
     private boolean isShiftingEnabled;
     private TalonSRX leftMaster = new TalonSRX(Ports.Drivetrain.leftMaster);
@@ -69,15 +69,15 @@ public class Drivetrain extends Subsystem {
         return convertTicksToDistance(leftMaster.getSelectedSensorVelocity()) * 10;
     }
 
-    public void gearShiftEnabled(boolean enable){
+    public void gearShiftEnabled(boolean enable) {
         isShiftingEnabled = enable;
     }
 
-    public void shift(boolean shiftUp){
-        if (canShift()){
-            if(shiftUp){
+    public void shift(boolean shiftUp) {
+        if (canShift()) {
+            if (shiftUp) {
                 shifter.set(DoubleSolenoid.Value.kForward);
-            }else {
+            } else {
                 shifter.set(DoubleSolenoid.Value.kReverse);
             }
             shiftCounter.reset();
@@ -89,11 +89,11 @@ public class Drivetrain extends Subsystem {
      * first of all it checks if the drivetrain can shift gear
      * than it check if it should shift the gear up or down
      */
-    public void autoShift(){
-        if (canShift()){
-            if (shiftUp()){
+    public void autoShift() {
+        if (canShift()) {
+            if (shiftUp()) {
                 shifter.set(DoubleSolenoid.Value.kForward);
-            }else if (shiftDown()){
+            } else if (shiftDown()) {
                 shifter.set(DoubleSolenoid.Value.kReverse);
             }
         }
@@ -152,35 +152,38 @@ public class Drivetrain extends Subsystem {
         return tick / TICKS_PER_METER;
     }
 
-    public boolean isOnHighGear(){
+    public boolean isOnHighGear() {
         return shifter.get() == DoubleSolenoid.Value.kForward;
     }
 
     /**
      * This method return if the robot hasn't shifted recently or turn
      * to check if the robot can shift gear
+     *
      * @return if the drivetrain can shift gear
      */
-    public boolean canShift(){
-        return (Math.abs(getLeftVelocity()-getRightVelocity())< DIFFERENTIAL_TOLERANCE) && (shiftCounter.get()> MIN_SHIFT_TIME) && isShiftingEnabled;
+    public boolean canShift() {
+        return (Math.abs(getLeftVelocity() - getRightVelocity()) < DIFFERENTIAL_TOLERANCE) && (shiftCounter.get() > MIN_SHIFT_TIME) && isShiftingEnabled;
     }
 
     /**
      * This method check if the acceleration is higher than the minimal acceleration for gear shifting
      * and if the velocity is higher than the minimal velocity for shifting
+     *
      * @return if the robot should shift the gear up
      */
-    public boolean shiftUp(){
-        return (Robot.navx.getRawAccelX()> SHIFT_UP_ACCELERATION) && ((getRightVelocity()+getLeftVelocity())/2 > SHIFT_UP_POINT && !isOnHighGear());
+    public boolean shiftUp() {
+        return (Robot.navx.getRawAccelX() > SHIFT_UP_ACCELERATION) && ((getRightVelocity() + getLeftVelocity()) / 2 > SHIFT_UP_POINT && !isOnHighGear());
     }
 
     /**
      * This method check if the acceleration is lower than the minimal acceleration for gear shifting
      * and if the velocity is lower than the minimal velocity for shifting
+     *
      * @return if the robot should shift the gear down
      */
-    public boolean shiftDown(){
-        return (Robot.navx.getRawAccelX() < SHIFT_DOWN_ACCELERATION) && ((getRightVelocity()+getLeftVelocity())/2 < SHIFT_DOWN_POINT && isOnHighGear());
+    public boolean shiftDown() {
+        return (Robot.navx.getRawAccelX() < SHIFT_DOWN_ACCELERATION) && ((getRightVelocity() + getLeftVelocity()) / 2 < SHIFT_DOWN_POINT && isOnHighGear());
     }
 
     @Override
