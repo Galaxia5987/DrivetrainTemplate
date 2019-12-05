@@ -17,15 +17,16 @@ import robot.subsystems.drivetrain.commands.DriveTypeChooser;
  */
 public class Drivetrain extends Subsystem {
 
-    public TalonSRX leftMaster = new TalonSRX(Ports.Drivetrain.leftMaster);
-    public TalonSRX rightMaster = new TalonSRX(Ports.Drivetrain.rightMaster);
-    public VictorSPX right1 = new VictorSPX(Ports.Drivetrain.rightSlave1);
-    public VictorSPX left1 = new VictorSPX(Ports.Drivetrain.leftSlave1);
-    public VictorSPX right2 = new VictorSPX(Ports.Drivetrain.rightSlave2);
-    public VictorSPX left2 = new VictorSPX(Ports.Drivetrain.leftSlave2);
-    public DoubleSolenoid shifter = new DoubleSolenoid(Ports.Drivetrain.shifterUp,Ports.Drivetrain.shifterDown);
-    public Timer shiftCounter = new Timer();
-    public boolean isShiftingEnabled;
+
+    private DoubleSolenoid shifter = new DoubleSolenoid(Ports.Drivetrain.shifterUp,Ports.Drivetrain.shifterDown);
+    private Timer shiftCounter = new Timer();
+    private boolean isShiftingEnabled;
+    private TalonSRX leftMaster = new TalonSRX(Ports.Drivetrain.leftMaster);
+    private TalonSRX rightMaster = new TalonSRX(Ports.Drivetrain.rightMaster);
+    private VictorSPX right1 = new VictorSPX(Ports.Drivetrain.rightSlave1);
+    private VictorSPX left1 = new VictorSPX(Ports.Drivetrain.leftSlave1);
+    private VictorSPX right2 = new VictorSPX(Ports.Drivetrain.rightSlave2);
+    private VictorSPX left2 = new VictorSPX(Ports.Drivetrain.leftSlave2);
 
     public Drivetrain() {
         leftMaster.setInverted(true);
