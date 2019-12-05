@@ -1,6 +1,5 @@
 package robot.subsystems.drivetrain;
 
-import static robot.Constants.Drivetrain.*;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -12,29 +11,32 @@ import robot.Ports;
 import robot.Robot;
 import robot.subsystems.drivetrain.commands.DriveTypeChooser;
 
+import static robot.Constants.Drivetrain.*;
+import static robot.Ports.Drivetrain.*;
+
 /**
- * This is a temporary subsystem from last year.
+ * Drivetrain subsystem for the gear-shifter drivetrain
  */
 public class Drivetrain extends Subsystem {
 
 
-    private DoubleSolenoid shifter = new DoubleSolenoid(Ports.Drivetrain.shifterUp, Ports.Drivetrain.shifterDown);
+    private DoubleSolenoid shifter = new DoubleSolenoid(Ports.Drivetrain.shifterForwardPort, Ports.Drivetrain.shifterReversePort);
     private Timer shiftCounter = new Timer();
     private boolean isShiftingEnabled;
-    private TalonSRX leftMaster = new TalonSRX(Ports.Drivetrain.leftMaster);
-    private TalonSRX rightMaster = new TalonSRX(Ports.Drivetrain.rightMaster);
-    private VictorSPX right1 = new VictorSPX(Ports.Drivetrain.rightSlave1);
-    private VictorSPX left1 = new VictorSPX(Ports.Drivetrain.leftSlave1);
-    private VictorSPX right2 = new VictorSPX(Ports.Drivetrain.rightSlave2);
-    private VictorSPX left2 = new VictorSPX(Ports.Drivetrain.leftSlave2);
+    private TalonSRX leftMaster = new TalonSRX(leftMasterPort);
+    private TalonSRX rightMaster = new TalonSRX(rightMasterPort);
+    private VictorSPX right1 = new VictorSPX(rightSlave1Port);
+    private VictorSPX left1 = new VictorSPX(leftSlave1Port);
+    private VictorSPX right2 = new VictorSPX(rightSlave2Port);
+    private VictorSPX left2 = new VictorSPX(leftSlave2Port);
 
     public Drivetrain() {
-        leftMaster.setInverted(Ports.Drivetrain.leftMasterReversed);
-        left1.setInverted(Ports.Drivetrain.leftSlave1Reversed);
-        left2.setInverted(Ports.Drivetrain.leftSlave2Reversed);
-        rightMaster.setInverted(Ports.Drivetrain.rightMasterReversed);
-        right1.setInverted(Ports.Drivetrain.rightSlave1Reversed);
-        right2.setInverted(Ports.Drivetrain.rightSlave2Reversed);
+        leftMaster.setInverted(leftMasterReversed);
+        left1.setInverted(leftSlave1Reversed);
+        left2.setInverted(leftSlave2Reversed);
+        rightMaster.setInverted(rightMasterReversed);
+        right1.setInverted(rightSlave1Reversed);
+        right2.setInverted(rightSlave2Reversed);
 
         right1.follow(rightMaster);
         right2.follow(rightMaster);
