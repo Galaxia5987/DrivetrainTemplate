@@ -20,23 +20,23 @@ import static robot.Ports.Drivetrain.*;
 public class Drivetrain extends Subsystem {
 
 
-    private DoubleSolenoid shifter = new DoubleSolenoid(Ports.Drivetrain.shifterForwardPort, Ports.Drivetrain.shifterReversePort);
+    private DoubleSolenoid shifter = new DoubleSolenoid(Ports.Drivetrain.SHIFTER_FORWARD_PORT, Ports.Drivetrain.SHIFTER_REVERSE_PORT);
     private Timer shiftCounter = new Timer();
     private boolean isShiftingEnabled;
-    private TalonSRX leftMaster = new TalonSRX(leftMasterPort);
-    private TalonSRX rightMaster = new TalonSRX(rightMasterPort);
-    private VictorSPX right1 = new VictorSPX(rightSlave1Port);
-    private VictorSPX left1 = new VictorSPX(leftSlave1Port);
-    private VictorSPX right2 = new VictorSPX(rightSlave2Port);
-    private VictorSPX left2 = new VictorSPX(leftSlave2Port);
+    private TalonSRX leftMaster = new TalonSRX(LEFT_MASTER_PORT);
+    private TalonSRX rightMaster = new TalonSRX(RIGHT_MASTER_PORT);
+    private VictorSPX right1 = new VictorSPX(RIGHT_SLAVE_1_PORT);
+    private VictorSPX left1 = new VictorSPX(LEFT_SLAVE_1_PORT);
+    private VictorSPX right2 = new VictorSPX(RIGHT_SLAVE_2_PORT);
+    private VictorSPX left2 = new VictorSPX(LEFT_SLAVE_2_PORT);
 
     public Drivetrain() {
-        leftMaster.setInverted(leftMasterReversed);
-        left1.setInverted(leftSlave1Reversed);
-        left2.setInverted(leftSlave2Reversed);
-        rightMaster.setInverted(rightMasterReversed);
-        right1.setInverted(rightSlave1Reversed);
-        right2.setInverted(rightSlave2Reversed);
+        leftMaster.setInverted(LEFT_MASTER_REVERSED);
+        left1.setInverted(LEFT_SLAVE_1_REVERSED);
+        left2.setInverted(LEFT_SLAVE_2_REVERSED);
+        rightMaster.setInverted(RIGHT_MASTER_REVERSED);
+        right1.setInverted(RIGHT_SLAVE_1_REVERSED);
+        right2.setInverted(RIGHT_SLAVE_2_REVERSED);
 
         right1.follow(rightMaster);
         right2.follow(rightMaster);

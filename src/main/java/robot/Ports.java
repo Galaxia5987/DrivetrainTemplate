@@ -8,21 +8,21 @@ package robot;
 public class Ports {
 
     public static class Drivetrain {
-        public static final int leftMasterPort = 16;
-        public static final int rightMasterPort = 11;
-        public static final int leftSlave1Port = 15;
-        public static final int rightSlave1Port = 12;
-        public static final int leftSlave2Port = 14;
-        public static final int rightSlave2Port = 13;
-        public static final int shifterForwardPort = 0;
-        public static final int shifterReversePort = 0;
+        public static final int LEFT_MASTER_PORT = 16;
+        public static final int RIGHT_MASTER_PORT = 11;
+        public static final int LEFT_SLAVE_1_PORT = 15;
+        public static final int RIGHT_SLAVE_1_PORT = 12;
+        public static final int LEFT_SLAVE_2_PORT = 14;
+        public static final int RIGHT_SLAVE_2_PORT = 13;
+        public static final int SHIFTER_FORWARD_PORT = 0;
+        public static final int SHIFTER_REVERSE_PORT = 0;
 
-        public static final boolean leftMasterReversed = true;
-        public static final boolean leftSlave1Reversed = true;
-        public static final boolean leftSlave2Reversed = true;
-        public static final boolean rightMasterReversed = false;
-        public static final boolean rightSlave1Reversed = false;
-        public static final boolean rightSlave2Reversed = false;
+        public static final boolean LEFT_MASTER_REVERSED = true;
+        public static final boolean LEFT_SLAVE_1_REVERSED = true;
+        public static final boolean LEFT_SLAVE_2_REVERSED = true;
+        public static final boolean RIGHT_MASTER_REVERSED = false;
+        public static final boolean RIGHT_SLAVE_1_REVERSED = false;
+        public static final boolean RIGHT_SLAVE_2_REVERSED = false;
     }
 
 }
