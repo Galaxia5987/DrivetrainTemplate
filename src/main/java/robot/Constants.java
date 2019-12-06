@@ -15,18 +15,20 @@ public class Constants {
         public static final int DIFFERENTIAL_TOLERANCE = 0; //in m/s(not the correct number)
 
         public static final int MIN_SHIFT_TIME = 1; //the minimal time between shifts
-        public static final int SHIFT_UP_POINT = 2;// the velocity that the robot can shift to a higher gear in m/s(not the correct number)
-        public static final int SHIFT_UP_ACCELERATION = 2; // the minimal acceleration to shift to a higher gear in m/s^2 (not the correct number)
-        public static final int SHIFT_DOWN_POINT = 1;// the velocity that the robot should shift to a lower gear in m/s(not the correct number)
-        public static final int SHIFT_DOWN_ACCELERATION = 2; // the acceleration to shift to a lower gear in m/s^2 (not the correct number)
+        public static final int SHIFT_HIGH_POINT = 1;// the velocity that the robot can shift to a higher gear in m/s(not the correct number)
+        public static final int SHIFT_HIGH_ACCELERATION = 2; // the minimal acceleration to shift to a higher gear in m/s^2 (not the correct number)
+        public static final int SHIFT_LOW_POINT = 1;// the velocity that the robot should shift to a lower gear in m/s(not the correct number)
+        public static final int SHIFT_LOW_ACCELERATION = 2; // the acceleration to shift to a lower gear in m/s^2 (not the correct number)
 
         //Stores all of the constants which change depending on the state of the shifter.
+        // The numbers of the TICKS_PER_METER are equal because the encoder is connected to the wheel and not to the motor
+
         public enum Shifter {
-            TICKS_PER_METER(256 / (4 * 0.0254 * Math.PI), 0),
-            MAX_VEL(3, 0),
-            MAX_ACCELERATION(5, 0),
+            TICKS_PER_METER(256 / (4 * 0.0254 * Math.PI), 256 / (4 * 0.0254 * Math.PI)),
+            MAX_VEL(3, 3),// not the final number
+            MAX_ACCELERATION(5, 5),//not the final number
             ;
-            
+
             private double lowratio, highratio;
 
             Shifter(double lowratio, double highratio) {

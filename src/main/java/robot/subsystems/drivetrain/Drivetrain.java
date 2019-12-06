@@ -16,6 +16,7 @@ import static robot.Ports.Drivetrain.*;
 
 /**
  * Drivetrain subsystem for the gear-shifter drivetrain
+ * In this drivetrain low gear and high gear is based on the torque , low gear = low torque and high gear = high torque
  */
 public class Drivetrain extends Subsystem {
 
@@ -75,6 +76,12 @@ public class Drivetrain extends Subsystem {
         isShiftingEnabled = enable;
     }
 
+    /**
+     * This method checks if the robot can shift gear , and if so he shifts the gear
+     * to the desired gear
+     *
+     * @param shiftUp the desired gear if true the high gear and if false to the lower gear.
+     */
     public void shift(boolean shiftUp) {
         if (canShift()) {
             if (shiftUp) {
@@ -93,9 +100,9 @@ public class Drivetrain extends Subsystem {
      */
     public void autoShift() {
         if (canShift()) {
-            if (shiftUp()) {
+            if (canShiftHigh()) {
                 shifter.set(DoubleSolenoid.Value.kForward);
-            } else if (shiftDown()) {
+            } else if (canShiftLow()) {
                 shifter.set(DoubleSolenoid.Value.kReverse);
             }
         }
@@ -154,6 +161,12 @@ public class Drivetrain extends Subsystem {
         return tick / Shifter.TICKS_PER_METER.get();
     }
 
+    /**
+     * Check if the gear is on high gear which mean more torque
+     * or if on low gear which mean lower torque and more speed
+     *
+     * @return if the robot is on high gear
+     */
     public boolean isOnHighGear() {
         return shifter.get() == DoubleSolenoid.Value.kForward;
     }
@@ -174,8 +187,8 @@ public class Drivetrain extends Subsystem {
      *
      * @return if the robot should shift the gear up
      */
-    public boolean shiftUp() {
-        return (Robot.navx.getRawAccelX() > SHIFT_UP_ACCELERATION) && ((getRightVelocity() + getLeftVelocity()) / 2 > SHIFT_UP_POINT && !isOnHighGear());
+    public boolean canShiftHigh() {
+        return (Robot.navx.getRawAccelX() > SHIFT_HIGH_ACCELERATION) && ((getRightVelocity() + getLeftVelocity()) / 2 > SHIFT_HIGH_POINT && !isOnHighGear());
     }
 
     /**
@@ -184,8 +197,8 @@ public class Drivetrain extends Subsystem {
      *
      * @return if the robot should shift the gear down
      */
-    public boolean shiftDown() {
-        return (Robot.navx.getRawAccelX() < SHIFT_DOWN_ACCELERATION) && ((getRightVelocity() + getLeftVelocity()) / 2 < SHIFT_DOWN_POINT && isOnHighGear());
+    public boolean canShiftLow() {
+        return (Robot.navx.getRawAccelX() < SHIFT_LOW_ACCELERATION) && ((getRightVelocity() + getLeftVelocity()) / 2 < SHIFT_LOW_POINT && isOnHighGear());
     }
 
     @Override
