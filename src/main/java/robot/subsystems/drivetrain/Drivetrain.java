@@ -84,13 +84,23 @@ public class Drivetrain extends Subsystem {
      */
     public void shift(boolean shiftUp) {
         if (canShift()) {
-            if (shiftUp) {
-                shifter.set(DoubleSolenoid.Value.kForward);
-            } else {
-                shifter.set(DoubleSolenoid.Value.kReverse);
-            }
             shiftCounter.reset();
+            if (shiftUp) {
+                shifter.set(shiftUp());
+            } else {
+                shifter.set(shiftDown());
+            }
         }
+    }
+
+    private DoubleSolenoid.Value shiftUp() {
+        shiftCounter.start();
+        return DoubleSolenoid.Value.kForward;
+    }
+
+    private DoubleSolenoid.Value shiftDown() {
+        shiftCounter.start();
+        return DoubleSolenoid.Value.kReverse;
     }
 
     /**
@@ -101,13 +111,12 @@ public class Drivetrain extends Subsystem {
     public void autoShift() {
         if (canShift()) {
             if (canShiftHigh()) {
-                shifter.set(DoubleSolenoid.Value.kForward);
+                shifter.set(shiftUp());
             } else if (canShiftLow()) {
-                shifter.set(DoubleSolenoid.Value.kReverse);
+                shifter.set(shiftDown());
             }
         }
     }
-
 
     public int convertDistanceToTicks(double distance) {
         return (int) (distance * Shifter.TICKS_PER_METER.get());
