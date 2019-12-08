@@ -34,11 +34,6 @@ public class RobotContainer {
 
     public RobotContainer(){
         configureButtonBindings();
-
-        //m_chooser.addOption("Example Auto 1", new DriveStraight());
-        //m_chooser.addOption("Example Auto 2", new ExampleCommand());
-        //m_chooser.setDefaultOption();
-        Shuffleboard.getTab("Autonomous").add(m_chooser);
     }
 
 
