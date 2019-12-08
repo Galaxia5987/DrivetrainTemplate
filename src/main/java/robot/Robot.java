@@ -8,6 +8,7 @@
 package robot;
 
 import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -31,7 +32,7 @@ public class Robot extends TimedRobot {
     public static final Drivetrain m_drivetrain = new Drivetrain();
     public static AHRS navx = new AHRS(SPI.Port.kMXP);
     public static RobotContainer m_robotContainer;
-
+    public static Compressor compressor = new Compressor(1);
     Command m_autonomousCommand;
     public static SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -46,6 +47,7 @@ public class Robot extends TimedRobot {
         m_chooser.addDefault("Normal", new JoystickDrive());
         m_chooser.addOption("sqr drive", new sqrtJoystickDrive());
         m_robotContainer = new RobotContainer();
+        compressor.start();
     }
 
 
