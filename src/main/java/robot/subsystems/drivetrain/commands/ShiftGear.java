@@ -13,7 +13,7 @@ public class ShiftGear extends InstantCommand {
 
     public ShiftGear() {
         requires(Robot.m_drivetrain);
-        desiredMode= gearMode.toggle;
+        desiredMode = gearMode.toggle;
     }
 
     public ShiftGear(boolean shiftUp) {
@@ -30,10 +30,13 @@ public class ShiftGear extends InstantCommand {
         switch (desiredMode){
             case toggle:
                 Robot.m_drivetrain.shift(!Robot.m_drivetrain.isOnHighGear());
+                break;
             case high:
                 Robot.m_drivetrain.shift(true);
+                break;
             case low:
                 Robot.m_drivetrain.shift(false);
+                break;
         }
     }
 
