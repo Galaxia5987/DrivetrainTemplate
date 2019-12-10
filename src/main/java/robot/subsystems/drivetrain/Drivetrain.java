@@ -22,12 +22,12 @@ public class Drivetrain extends Subsystem {
     private VictorSPX right2 = new VictorSPX(Ports.Drivetrain.RIGHT_SLAVE_2);
 
     public Drivetrain() {
-        leftMaster.setInverted(true);
-        left1.setInverted(true);
-        left2.setInverted(true);
-        rightMaster.setInverted(false);
-        right1.setInverted(false);
-        right2.setInverted(false);
+        leftMaster.setInverted(Ports.Drivetrain.leftMasterReversed);
+        left1.setInverted(Ports.Drivetrain.leftSlave1Reversed);
+        left2.setInverted(Ports.Drivetrain.leftSlave2Reversed);
+        rightMaster.setInverted(Ports.Drivetrain.rightMasterReversed);
+        right1.setInverted(Ports.Drivetrain.rightSlave1Reversed);
+        right2.setInverted(Ports.Drivetrain.rightSlave2Reversed);
 
         right1.follow(rightMaster);
         right2.follow(rightMaster);
