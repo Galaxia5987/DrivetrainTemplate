@@ -1,5 +1,7 @@
 package robot.subsystems.drivetrain;
 
+import static robot.Ports.Drivetrain.*;
+import static robot.Constants.Drivetrain.*;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -7,12 +9,8 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import robot.Constants;
-import robot.Ports;
 import robot.Robot;
-import robot.subsystems.drivetrain.commands.DriveTypeChooser;
-
-import static robot.Constants.Drivetrain.*;
-import static robot.Ports.Drivetrain.*;
+import robot.subsystems.drivetrain.commands.JoystickDrive;
 
 /**
  * Drivetrain subsystem for the gear-shifter drivetrain
@@ -21,7 +19,7 @@ import static robot.Ports.Drivetrain.*;
 public class Drivetrain extends Subsystem {
 
 
-    private DoubleSolenoid shifter = new DoubleSolenoid(1, Ports.Drivetrain.SHIFTER_FORWARD_PORT, Ports.Drivetrain.SHIFTER_REVERSE_PORT);
+    private DoubleSolenoid shifter = new DoubleSolenoid(1, SHIFTER_FORWARD_PORT, SHIFTER_REVERSE_PORT);
 
     private Timer shiftCounter = new Timer();
     private boolean isShiftingEnabled;
@@ -213,6 +211,6 @@ public class Drivetrain extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new DriveTypeChooser());
+        setDefaultCommand(new JoystickDrive());
     }
 }
