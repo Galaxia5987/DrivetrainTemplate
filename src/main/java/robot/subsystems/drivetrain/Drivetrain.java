@@ -21,11 +21,8 @@ import static robot.Ports.Drivetrain.*;
 public class Drivetrain extends Subsystem {
 
 
-<<<<<<< HEAD
-    public DoubleSolenoid shifter = new DoubleSolenoid(1,Ports.Drivetrain.SHIFTER_FORWARD_PORT, Ports.Drivetrain.SHIFTER_REVERSE_PORT);
-=======
     private DoubleSolenoid shifter = new DoubleSolenoid(1, Ports.Drivetrain.SHIFTER_FORWARD_PORT, Ports.Drivetrain.SHIFTER_REVERSE_PORT);
->>>>>>> shifter
+
     private Timer shiftCounter = new Timer();
     private boolean isShiftingEnabled;
     private TalonSRX leftMaster = new TalonSRX(LEFT_MASTER_PORT);
