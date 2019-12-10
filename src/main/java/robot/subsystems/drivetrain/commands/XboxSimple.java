@@ -6,8 +6,8 @@ import robot.Robot;
 import static robot.Constants.Drivetrain.*;
 
 public class XboxSimple extends Command {
-    private double forward = -Robot.m_robotContainer.getRightXboxY();
-    private double turn = -Robot.m_robotContainer.getLeftXboxX();
+    private double forward = Robot.m_robotContainer.getRightXboxY();
+    private double turn = Robot.m_robotContainer.getLeftXboxX();
     public XboxSimple(){
         requires(Robot.m_drivetrain);
     }
