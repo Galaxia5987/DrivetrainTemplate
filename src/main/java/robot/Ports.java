@@ -24,8 +24,4 @@ public class Ports {
         public static final boolean RIGHT_SLAVE_2_REVERSED = false;
     }
 
-        public static final int RIGHT_MASTER = 11;
-        public static final int RIGHT_SLAVE_1 = 12;
-        public static final int RIGHT_SLAVE_2 = 13;
-    }
 }
