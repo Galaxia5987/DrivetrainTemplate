@@ -24,7 +24,7 @@ public class POVdrive extends Command {
         double leftInput;
         double rightInput;
         double drive = Robot.m_robotContainer.getRightXboxY();
-        double turn = Robot.m_robotContainer.getLeftXboxY(); 
+        double turn = Robot.m_robotContainer.getLeftXboxX();
         double difference;
 
 
