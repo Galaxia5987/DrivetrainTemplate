@@ -12,13 +12,13 @@ public class Constants {
     public static class Drivetrain {
         public static final int MAX_CURRENT = 35;
 
-        public static final int DIFFERENTIAL_TOLERANCE = 0; //in m/s(not the correct number)
+        public static final int DIFFERENTIAL_TOLERANCE = 1; //in m/s(not the correct number)
 
         public static final int MIN_SHIFT_TIME = 1; //the minimal time between shifts
-        public static final int SHIFT_HIGH_POINT = 1;// the velocity that the robot can shift to a higher gear in m/s(not the correct number)
-        public static final int SHIFT_HIGH_ACCELERATION = 2; // the minimal acceleration to shift to a higher gear in m/s^2 (not the correct number)
-        public static final int SHIFT_LOW_POINT = 1;// the velocity that the robot should shift to a lower gear in m/s(not the correct number)
-        public static final int SHIFT_LOW_ACCELERATION = 2; // the acceleration to shift to a lower gear in m/s^2 (not the correct number)
+        public static final double SHIFT_HIGH_POINT = 0.7;// the velocity that the robot can shift to a higher gear in m/s(not the correct number)
+        public static final double SHIFT_HIGH_ACCELERATION = 2; // the minimal acceleration to shift to a higher gear in m/s^2 (not the correct number)
+        public static final double SHIFT_LOW_POINT = 0.5;// the velocity that the robot should shift to a lower gear in m/s(not the correct number)
+        public static final double SHIFT_LOW_ACCELERATION = 1; // the acceleration to shift to a lower gear in m/s^2 (not the correct number)
 
         //Stores all of the constants which change depending on the state of the shifter.
         // The numbers of the TICKS_PER_METER are equal because the encoder is connected to the wheel and not to the motor
