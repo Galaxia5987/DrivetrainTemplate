@@ -62,7 +62,7 @@ public class RobotContainer {
         return xbox.getRawAxis(rightYStick);
     }
 
-    public double getLeftXboxY(){
+    public double getLeftXboxX(){
         return xbox.getRawAxis(leftYStick);
     }
 }
