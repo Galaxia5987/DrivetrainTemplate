@@ -21,8 +21,8 @@ public class Drivetrain extends Subsystem {
 
     private DoubleSolenoid shifter = new DoubleSolenoid(1, SHIFTER_FORWARD_PORT, SHIFTER_REVERSE_PORT);
 
-    private Timer shiftCounter = new Timer();
-    private boolean isShiftingEnabled;
+    public Timer shiftCounter = new Timer();
+    private boolean isShiftingEnabled = true;
     private TalonSRX leftMaster = new TalonSRX(LEFT_MASTER_PORT);
     private TalonSRX rightMaster = new TalonSRX(RIGHT_MASTER_PORT);
     private VictorSPX right1 = new VictorSPX(RIGHT_SLAVE_1_PORT);
@@ -84,22 +84,13 @@ public class Drivetrain extends Subsystem {
     public void shift(boolean shiftUp) {
         if (canShift()) {
             shiftCounter.reset();
+            shiftCounter.start();
             if (shiftUp) {
-                shifter.set(shiftUp());
+                shifter.set(DoubleSolenoid.Value.kForward);
             } else {
-                shifter.set(shiftDown());
+                shifter.set(DoubleSolenoid.Value.kReverse);
             }
         }
-    }
-
-    private DoubleSolenoid.Value shiftUp() {
-        shiftCounter.start();
-        return DoubleSolenoid.Value.kForward;
-    }
-
-    private DoubleSolenoid.Value shiftDown() {
-        shiftCounter.start();
-        return DoubleSolenoid.Value.kReverse;
     }
 
     /**
@@ -108,11 +99,15 @@ public class Drivetrain extends Subsystem {
      * than it check if it should shift the gear up or down
      */
     public void autoShift() {
+        System.out.println("can " + canShift() );
+        System.out.println("can high " + canShiftHigh() );
+        System.out.println((getRightVelocity() + getLeftVelocity()) / 2);
         if (canShift()) {
             if (canShiftHigh()) {
-                shifter.set(shiftUp());
+                shift(false);
             } else if (canShiftLow()) {
-                shifter.set(shiftDown());
+                System.out.println("can low " + canShiftLow() );
+                shift(true);
             }
         }
     }
