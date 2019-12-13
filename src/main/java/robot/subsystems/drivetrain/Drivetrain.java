@@ -15,6 +15,7 @@ import robot.subsystems.drivetrain.commands.JoystickDrive;
 /**
  * Drivetrain subsystem for the gear-shifter drivetrain
  * In this drivetrain low gear and high gear is based on the torque , low gear = low torque and high gear = high torque
+ * The logic of the auto shift is based on the following chief delphi post https://www.chiefdelphi.com/t/programming-for-a-shifting-gearbox/124162/6
  */
 public class Drivetrain extends Subsystem {
 
