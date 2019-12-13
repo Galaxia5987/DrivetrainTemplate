@@ -12,9 +12,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import robot.subsystems.drivetrain.commands.DriveStraight;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -28,7 +26,7 @@ public class RobotContainer {
     Button b = new JoystickButton(xbox, 1);
     Button x = new JoystickButton(xbox, 3);
     Button y = new JoystickButton(xbox, 4);
-    public static int leftYStick = 1;
+    public static int leftXStick = 0;
     public static int rightYStick = 5;
 
     public RobotContainer(){
@@ -37,14 +35,14 @@ public class RobotContainer {
         //m_chooser.addOption("Example Auto 1", new DriveStraight());
         //m_chooser.addOption("Example Auto 2", new ExampleCommand());
         //m_chooser.setDefaultOption();
-        Shuffleboard.getTab("Autonomous").add(m_chooser);
+//        Shuffleboard.getTab("Autonomous").add(m_chooser);
     }
 
 
 
     private void configureButtonBindings() {
         // Grab the hatch when the 'A' button is pressed.
-        new JoystickButton(xbox,1).whenPressed(new DriveStraight(0.5));
+//        new JoystickButton(xbox,1).whenPressed(new XboxSimple());
         //new JoystickButton(m_driverController, Button.kB.value).whenPressed(new ExampleCommand());
     }
 
@@ -63,6 +61,6 @@ public class RobotContainer {
     }
 
     public double getLeftXboxX(){
-        return xbox.getRawAxis(leftYStick);
+        return xbox.getRawAxis(leftXStick);
     }
 }
