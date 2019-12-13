@@ -18,7 +18,7 @@ public class DriveTypeChooser extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
         chosenCommand = Robot.m_chooser.getSelected();
-        Robot.m_drivetrain.setDefaultCommand(chosenCommand);
+        //Robot.m_drivetrain.setDefaultCommand(chosenCommand);
     }
 
     // Called repeatedly when this Command is scheduled to run

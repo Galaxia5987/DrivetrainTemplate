@@ -26,8 +26,8 @@ public class JoystickDrive extends Command {
         double leftInput = -Robot.m_robotContainer.leftJoystick.getY();
         double rightInput = -Robot.m_robotContainer.rightJoystick.getY();
 
-        Robot.m_drivetrain.setLeftSpeed(leftInput);
-        Robot.m_drivetrain.setRightSpeed(rightInput);
+        Robot.m_drivetrain.setLeftSpeed(-Math.pow(leftInput,2)*Math.signum(leftInput));
+        Robot.m_drivetrain.setRightSpeed(-Math.pow(rightInput,2)*Math.signum(rightInput));
     }
 
     // Make this return true when this Command no longer needs to run execute()
