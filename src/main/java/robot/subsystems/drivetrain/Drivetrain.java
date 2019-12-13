@@ -197,12 +197,12 @@ public class Drivetrain extends Subsystem {
 
     /**
      * This method check if the acceleration is lower than the minimal acceleration for gear shifting
-     * and if the velocity is lower than the minimal velocity for shifting
+     * and if the velocity is lower than the velocity for shifting and the robot attempts to drive faster
      *
      * @return if the robot should shift the gear down
      */
     public boolean canShiftLow() {
-        return (Robot.navx.getRawAccelX() < SHIFT_LOW_ACCELERATION) && ((getRightVelocity() + getLeftVelocity()) / 2 < SHIFT_LOW_POINT && isOnHighGear());
+        return (Robot.navx.getRawAccelX() < SHIFT_LOW_ACCELERATION) && (((getRightVelocity() + getLeftVelocity()) / 2 < SHIFT_LOW_POINT && (leftMaster.getOutputCurrent() + rightMaster.getOutputCurrent())> SHIFT_LOW_CURRENT)&& isOnHighGear());
     }
 
     @Override

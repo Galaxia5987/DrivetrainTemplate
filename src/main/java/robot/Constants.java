@@ -18,6 +18,7 @@ public class Constants {
         public static final double SHIFT_HIGH_POINT = 0.7;// the velocity that the robot can shift to a higher gear in m/s(not the correct number)
         public static final double SHIFT_HIGH_ACCELERATION = 2; // the minimal acceleration to shift to a higher gear in m/s^2 (not the correct number)
         public static final double SHIFT_LOW_POINT = 0.5;// the velocity that the robot should shift to a lower gear in m/s(not the correct number)
+        public static final double SHIFT_LOW_CURRENT = 25;// the current which mean the robot attempts to drive but doesn't manage to
         public static final double SHIFT_LOW_ACCELERATION = 1; // the acceleration to shift to a lower gear in m/s^2 (not the correct number)
 
         //Stores all of the constants which change depending on the state of the shifter.
