@@ -9,10 +9,10 @@ public class Ports {
     public static class Drivetrain {
         public static final int LEFT_MASTER_PORT = 16;
         public static final int RIGHT_MASTER_PORT = 11;
-        public static final int LEFT_SLAVE_1_PORT = 15;
-        public static final int RIGHT_SLAVE_1_PORT = 12;
-        public static final int LEFT_SLAVE_2_PORT = 14;
-        public static final int RIGHT_SLAVE_2_PORT = 13;
+        public static final int LEFT_SLAVE_1_PORT = 1;
+        public static final int LEFT_SLAVE_2_PORT = 2;
+        public static final int RIGHT_SLAVE_1_PORT = 3;
+        public static final int RIGHT_SLAVE_2_PORT = 4;
         public static final int SHIFTER_FORWARD_PORT = 0;
         public static final int SHIFTER_REVERSE_PORT = 0;
 
