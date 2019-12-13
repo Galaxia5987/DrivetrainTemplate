@@ -24,6 +24,8 @@ public class Drivetrain extends Subsystem {
 
     public Timer shiftCounter = new Timer();
     private boolean isShiftingEnabled = true;
+    private boolean shouldShift = false;
+    private boolean shiftUp;
     private TalonSRX leftMaster = new TalonSRX(LEFT_MASTER_PORT);
     private TalonSRX rightMaster = new TalonSRX(RIGHT_MASTER_PORT);
     private VictorSPX right1 = new VictorSPX(RIGHT_SLAVE_1_PORT);
@@ -83,6 +85,8 @@ public class Drivetrain extends Subsystem {
      * @param shiftUp the desired gear if true the high gear and if false to the lower gear.
      */
     public void shift(boolean shiftUp) {
+        shouldShift = true;
+        this.shiftUp = shiftUp;
         if (canShift()) {
             shiftCounter.reset();
             shiftCounter.start();
@@ -91,6 +95,7 @@ public class Drivetrain extends Subsystem {
             } else {
                 shifter.set(DoubleSolenoid.Value.kReverse);
             }
+            shouldShift = false;
         }
     }
 
@@ -110,6 +115,12 @@ public class Drivetrain extends Subsystem {
                 System.out.println("can low " + canShiftLow() );
                 shift(true);
             }
+        }
+    }
+
+    public void update(){
+        if (shouldShift){
+            shift(shiftUp);
         }
     }
 
