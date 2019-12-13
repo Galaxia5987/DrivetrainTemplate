@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import robot.subsystems.drivetrain.Drivetrain;
 import robot.subsystems.drivetrain.commands.JoystickDrive;
 import robot.subsystems.drivetrain.commands.POVdrive;
+import robot.subsystems.drivetrain.commands.XboxSimple;
 import robot.subsystems.drivetrain.commands.sqrtJoystickDrive;
 
 
@@ -26,9 +27,9 @@ import robot.subsystems.drivetrain.commands.sqrtJoystickDrive;
  */
 public class Robot extends TimedRobot {
     // The robot's subsystems
+    public static RobotContainer m_robotContainer;
     public static final Drivetrain m_drivetrain = new Drivetrain();
     //public static final Elevator m_elevator = new Elevator();
-    public static RobotContainer m_robotContainer;
 
     Command m_autonomousCommand;
     public static SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -41,7 +42,8 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         m_chooser.addOption("POV drive" , new POVdrive());
-        m_chooser.addDefault("Normal", new JoystickDrive());
+        m_chooser.addOption("Joystick Drive", new JoystickDrive());
+        m_chooser.setDefaultOption("Xbox", new XboxSimple());
         m_chooser.addOption("sqr drive", new sqrtJoystickDrive());
         m_robotContainer = new RobotContainer();
     }
