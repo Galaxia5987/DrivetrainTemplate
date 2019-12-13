@@ -36,8 +36,8 @@ public class POVdrive extends Command {
             leftInput = 1;
             rightInput -= difference;
         } else if (leftInput > -1 && rightInput > 1) {
-            leftInput = 1;
-            rightInput -= difference;
+            rightInput = 1;
+            leftInput -= difference;
         } else if (leftInput < 1 && rightInput < -1) {
             rightInput = -1;
             leftInput += difference;
