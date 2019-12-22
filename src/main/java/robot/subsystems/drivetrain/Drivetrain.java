@@ -20,6 +20,7 @@ import robot.subsystems.drivetrain.commands.JoystickDrive;
 public class Drivetrain extends Subsystem {
 
 
+
     private DoubleSolenoid shifter = new DoubleSolenoid(1, SHIFTER_FORWARD_PORT, SHIFTER_REVERSE_PORT);
 
     public Timer shiftCounter = new Timer();
@@ -32,6 +33,7 @@ public class Drivetrain extends Subsystem {
     private VictorSPX left1 = new VictorSPX(LEFT_SLAVE_1_PORT);
     private VictorSPX right2 = new VictorSPX(RIGHT_SLAVE_2_PORT);
     private VictorSPX left2 = new VictorSPX(LEFT_SLAVE_2_PORT);
+
 
     public Drivetrain() {
         leftMaster.setInverted(LEFT_MASTER_REVERSED);
