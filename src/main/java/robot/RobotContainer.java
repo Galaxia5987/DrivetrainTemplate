@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import robot.subsystems.drivetrain.commands.DriveStraight;
+import robot.subsystems.drivetrain.commands.ShiftGear;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -32,17 +35,17 @@ public class RobotContainer {
 
     public RobotContainer(){
         configureButtonBindings();
-
-        //m_chooser.addOption("Example Auto 1", new DriveStraight());
-        //m_chooser.addOption("Example Auto 2", new ExampleCommand());
-        //m_chooser.setDefaultOption();
-        Shuffleboard.getTab("Autonomous").add(m_chooser);
     }
 
 
 
     private void configureButtonBindings() {
         // Grab the hatch when the 'A' button is pressed.
+
+        b.whenPressed(new ShiftGear());
+        x.whenPressed(new ShiftGear(true));
+        y.whenPressed(new ShiftGear(false));
+
         //new JoystickButton(m_driverController, Button.kB.value).whenPressed(new ExampleCommand());
     }
 

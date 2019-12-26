@@ -7,6 +7,9 @@
 
 package robot;
 
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -23,9 +26,9 @@ import robot.subsystems.drivetrain.Drivetrain;
 public class Robot extends TimedRobot {
     // The robot's subsystems
     public static final Drivetrain m_drivetrain = new Drivetrain();
-    //public static final Elevator m_elevator = new Elevator();
+    public static AHRS navx = new AHRS(SPI.Port.kMXP);
     public static RobotContainer m_robotContainer;
-
+    public static Compressor compressor = new Compressor(1);
     Command m_autonomousCommand;
 
 
@@ -36,6 +39,7 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         m_robotContainer = new RobotContainer();
+        compressor.start();
     }
 
 
@@ -49,7 +53,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotPeriodic() {
-
+        m_drivetrain.update();
     }
 
 
@@ -98,6 +102,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
+        m_drivetrain.shiftCounter.start();
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
