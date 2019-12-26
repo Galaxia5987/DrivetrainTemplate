@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import robot.subsystems.drivetrain.commands.DriveStraight;
 import robot.subsystems.drivetrain.commands.ShiftGear;
 
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -40,9 +41,11 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
         // Grab the hatch when the 'A' button is pressed.
+
         b.whenPressed(new ShiftGear());
         x.whenPressed(new ShiftGear(true));
         y.whenPressed(new ShiftGear(false));
+
         //new JoystickButton(m_driverController, Button.kB.value).whenPressed(new ExampleCommand());
     }
 
